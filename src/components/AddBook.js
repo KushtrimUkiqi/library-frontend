@@ -2,7 +2,10 @@ import React from 'react'
 import { useState, useEffect, useRef} from 'react';
 import HttpClientService from '../services/HttpClient';
 
-export default function AddBook() {
+export default function AddBook({book}) {
+
+  var addBook = book === undefined;
+
   const [booksCategory,setBooksCategory] = useState([]);
   const [bookAuthors,setBookAuthors] = useState([{value: '', label: ''}]);
 
@@ -45,7 +48,6 @@ export default function AddBook() {
         let imageUrl = coverInputRef.current.value;
         let category = categoryInputRef.current.value;
         let copies = copiesInputRef.current.value;
-        console.log('THE VALUES ARE' + name,imageUrl,category,author,copies)
         HttpClientService
           .addBook(name,imageUrl,category,author,copies)
             .then(response => {
@@ -71,7 +73,7 @@ export default function AddBook() {
     <div className="modal-dialog modal-lg">
       <div className="modal-content">
         <div className="modal-header" style={{backgroundColor: ''}}>
-          <h5 className="modal-title" id="exampleModalLabel">Add new book</h5>
+          <h5 className="modal-title" id="exampleModalLabel">{addBook ? "Add new book" : "Edit book"}</h5>
           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div>

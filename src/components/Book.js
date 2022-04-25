@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function Book({book,loanBook,returnBook}) {
+export default function Book({book,loanBook,returnBook,editBook}) {
 
 
   return (
@@ -11,8 +11,12 @@ export default function Book({book,loanBook,returnBook}) {
         <div style={{borderBottom: '1px solid rgba(2,18,43,255)'}}>
             <h6 style={{backgroundColor: 'black',color: 'white',margin: 0}}>{book.name}</h6>
             <p style={{fontSize: 14,fontStyle: 'italic'}}>{`${book.author.name} ${book.author.surname}`}</p>
-            <p style={{fontSize: 12}}>{book.category}</p>
-            
+            <div style={{display: 'flex',alignItems: 'baseline',justifyContent: 'space-between'}}>
+            <p style={{fontSize: 12}}>{book.category} </p>
+            <button onClick={()=> editBook(book)} style={{padding: '0 20px',borderRadius: 0,backgroundColor: 'rgba(2,18,43,255)',borderColor: 'rgba(2,18,43,255)',color: "white"}} data-bs-toggle="modal" data-bs-target="#editBook">
+                edit
+            </button>
+            </div>
             <div style={{display: 'flex',alignItems: 'baseline'}}>
                 <button onClick={() => loanBook(book.id,book.name,`${book.author.name} ${book.author.surname}`)} className="btn btn-success" style={{padding: 1,borderRadius: 0,backgroundColor: 'rgba(2,18,43,255)',borderColor: 'rgba(2,18,43,255)'}} type="submit" data-bs-toggle="modal" data-bs-target="#returnBook">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

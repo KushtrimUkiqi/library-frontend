@@ -9,12 +9,15 @@ import Loading from './shared/Loading/Loading';
 import Book from './Book';
 import LoanBook from './LoanBook';
 import ReturnBook from './ReturnBook';
+import EditBook from './EditBook';
 
 export default function BooksList({books,error,loading}) {
 
+  const [book,setBook] = useState({});
   const [bookState,setBookState] = useState({id: 0,bookName: '',author: ''});
   const [displayLoanBookModal,setDisplayLoanBookModal] = useState(false);
   const [displayReturnBookModal,setDisplayReturnBookModal] = useState(false);
+
 
   function loanBook(id,name,author)
   {
@@ -30,6 +33,10 @@ export default function BooksList({books,error,loading}) {
     console.log(id,name,author)
   }
 
+  function editBook(bookToEdit)
+  {
+    setBook(bookToEdit);
+  }
 
   return (
     <>
@@ -38,7 +45,7 @@ export default function BooksList({books,error,loading}) {
     <div className="container col-10" style={{padding: '3vh 0'}}>
 
         <div  style={{display: 'grid',gridTemplateColumns: 'auto auto auto auto',alignItems: 'center',justifyContent: 'space-evenly',rowGap: '15px'}}>
-          {books.map((book,index) => <Book key={index} book={book} loanBook={loanBook} returnBook={returnBook}></Book>
+          {books.map((book,index) => <Book key={index} book={book} loanBook={loanBook} returnBook={returnBook} editBook={editBook}></Book>
           )}
         </div>
     </div>)}
@@ -51,6 +58,7 @@ export default function BooksList({books,error,loading}) {
         }
     </div>
 
+    <EditBook book={book}></EditBook>
 
     <LoanBook book={bookState}></LoanBook>
 
