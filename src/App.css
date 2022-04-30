@@ -5,6 +5,20 @@
     --emptyState: #d9d9d9;
 }
 
+/* remove the border radius that bootstrap uses by general for it's components  */
+/* ATENTION this may require using !important when you want to use borderRadius on a component */
 *{
     border-radius: 0!important;
+}
+
+/* remove some annoying css styling by overriding in the main css file*/
+
+li {
+    list-style: none;
+    list-style-position: outside;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;    
 }
